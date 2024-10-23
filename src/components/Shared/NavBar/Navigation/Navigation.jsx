@@ -11,6 +11,7 @@ const navButtonStyle = ({ isActive, isTransitioning }) => {
     viewTransitionName: isTransitioning ? "slide" : "",
   };
 };
+
 export default function NavBar() {
   const navigate = useNavigate();
   const { user, loading, logOut } = useContext(AuthContext);
@@ -83,6 +84,10 @@ export default function NavBar() {
                 src={user?.photoURL}
               />
               <p>{user?.displayName}</p>
+
+              <Link to="/dashboard">
+                <button className="btn btn-black btn-outline">Dashboard</button>
+              </Link>
               <button
                 onClick={handleLogOut}
                 className="btn btn-black btn-outline"

@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context-api/AuthProvider";
 
@@ -20,29 +19,40 @@ export default function SignUp() {
   const handleSignUp = (data) => {
     console.log(data);
     setErrorShow("");
+
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
         // console.log(user);
 
         setLoading(true);
-
         const userInfo = {
-          displayName: data.name,
-          photoURL: data.photoUrl,
+          name: data.name,
+          email: data.email,
+          password: data.password,
+          phone: data.phone,
+          role: data.role,
+          address: data?.address,
         };
-        updateUser(userInfo)
-          .then((result) => {
-            setLoading(false);
-            // navigate('/');
-            toast.success(`Created a profile!`);
-            // console.log(user)
-            // logOut();
+        console.log(userInfo);
+
+        fetch("http://localhost:5000/users", {
+          method: "POST", //
+          headers: {
+            "Content-Type": "application/json", // Inform the server that JSON is being sent
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Success:", data);
+
             navigate("/");
+            setLoading(false);
+            logOut();
           })
           .catch((error) => {
-            setErrorShow(error.message);
-            setLoading(false);
+            console.error("Error:", error);
           });
       })
       .catch((error) => {
@@ -78,12 +88,29 @@ export default function SignUp() {
           <div className="form-control w-full ">
             <label className="label">
               {" "}
-              <span className="label-text">Photo Url</span>
+              <span className="label-text">Phone</span>
             </label>
             <input
               type="text"
-              {...register("photoUrl")}
-              placeholder="photoUrl"
+              {...register("phone", { required: "Phone number is required" })}
+              placeholder="Phone Number"
+              className="input input-bordered w-full "
+            />
+          </div>
+          {errors.name?.type === "required" && (
+            <p className="text-rose-800" role="alert">
+              Phone number is required
+            </p>
+          )}
+          <div className="form-control w-full ">
+            <label className="label">
+              {" "}
+              <span className="label-text">Address</span>
+            </label>
+            <input
+              type="text"
+              {...register("address")}
+              placeholder="name"
               className="input input-bordered w-full "
             />
           </div>
@@ -122,7 +149,20 @@ export default function SignUp() {
                 Password is required
               </p>
             )}{" "}
-            <br />
+          </div>
+          <div className="form-control w-full mb-3">
+            <label className="label">
+              {" "}
+              <span className="label-text">Role</span>
+            </label>
+
+            <select
+              className="borber border-2 py-2 w-full rounded-md"
+              {...register("role")}
+            >
+              <option value="user">user</option>
+              <option value="admin">admin</option>
+            </select>
           </div>
           <button type="submit" className="btn btn-ghost btn-outline">
             Register

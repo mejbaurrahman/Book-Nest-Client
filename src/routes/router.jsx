@@ -3,8 +3,11 @@ import Main from "../layouts/Main/Main";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
-
+import PrivateRoute from "./PrivateRoute";
 import NotFound from "../pages/NotFound/NotFound";
+import Products from "../pages/Products/Products";
+import Dashboard from "../layouts/Dashboard/Dashboard";
+import AllUsers from "../pages/Dashboards/AllUsers/AllUsers";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +26,28 @@ export const router = createBrowserRouter([
       {
         path: "/Register",
         element: <Register />,
+      },
+      {
+        path: "/products",
+        element: (
+          <PrivateRoute>
+            <Products />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "/dashboard/allUsers",
+        element: <AllUsers />,
       },
     ],
   },

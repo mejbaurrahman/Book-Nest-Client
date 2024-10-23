@@ -47,18 +47,6 @@ const Login = () => {
         setErrorShow(error.message);
       });
   };
-  const handleGitHubLogin = () => {
-    setErrorShow("");
-    gitHubLogin()
-      .then((result) => {
-        const user = result.user;
-
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        setErrorShow(error.message);
-      });
-  };
 
   return (
     <div className="flex justify-center items-center my-16">
@@ -108,7 +96,7 @@ const Login = () => {
               )}
             </div>
 
-            <button type="submit" className="btn btn-ghost btn-outline">
+            <button type="submit" className="btn btn-ghost btn-outline w-full">
               Login
             </button>
           </form>
@@ -121,20 +109,13 @@ const Login = () => {
             </p>
           </div>
           <div className="divider">OR</div>
-          <div className="flex lg:justify-between md:justify-between lg:flex-row flex-col items-center">
+          <div className="flex lg:justify-center md:justify-center lg:flex-row flex-col items-center">
             <button
               onClick={handleGoogleLogin}
               type="submit"
-              className="btn btn-ghost text-xl btn-outline my-2 py-3 px-7"
+              className="btn btn-ghost text-xl btn-outline my-2 py-3 px-7 w-1/3"
             >
               <FaGoogle />
-            </button>
-            <button
-              onClick={handleGitHubLogin}
-              type="submit"
-              className="btn text-xl btn-ghost btn-outline my-2 py-3 px-7"
-            >
-              <FaGithub />
             </button>
           </div>
         </div>
