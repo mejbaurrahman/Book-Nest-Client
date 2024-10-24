@@ -1,16 +1,30 @@
+/* eslint-disable no-undef */
 import { useForm } from "react-hook-form";
 import SpecialButton from "../../../components/SpecialButton/SpecialButton";
+import axios from "axios";
 
 export default function AddCategory() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
-    // Here you can handle the submission of the form data, e.g., make an API call
+    try {
+      // Axios POST request to add category
+      const response = await axios.post("http://localhost:5000/categories", {
+        category: data.category,
+      });
+      console.log("Category added:", response.data);
+      alert("Category added successfully!");
+      reset(); // Reset the form after successful submission
+    } catch (error) {
+      console.error("Error adding category:", error);
+      alert("Error adding category");
+    }
   };
   return (
     <div className="lg:w-1/2 md:w-1/2 w-full mx-auto m-2 p-6 border rounded-md ">
