@@ -1,17 +1,78 @@
-import { useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import SpecialButton from "../../../components/SpecialButton/SpecialButton";
+import axios from "axios";
 
 export default function AddProduct() {
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get("http://localhost:5000/categories")
+      .then(function (response) {
+        setCategories(response.data);
+        setLoading(false);
+      })
+      .catch(function (error) {
+        console.error(error);
+        setLoading(false);
+      });
+  }, []);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const [imagePreview, setImagePreview] = useState(null);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+    const formData = new FormData();
+    formData.append("image", data.bookCover[0]);
+    const imgbbAPIKey = import.meta.env.VITE_IMGBB_API_KEY;
+
+    try {
+      const response = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${imgbbAPIKey}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Required for file uploads
+          },
+        }
+      );
+
+      if (response.data.success) {
+        const productInfo = {
+          book: data.bookName,
+          author: data.author,
+          category: data.category,
+          pages: data.pages,
+          publishedYear: data.publishedYear,
+          rating: data.rating,
+          review: data.review,
+          img: response.data.data.url,
+        };
+        axios
+          .post("http://localhost:5000/products", productInfo)
+          .then(function (response) {
+            alert("Product ADDED successfully");
+            reset();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        // Reset form after successful upload
+      } else {
+        console.error("Upload failed:", response.data);
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
   };
 
   const handleImageUpload = (e) => {
@@ -145,12 +206,18 @@ export default function AddProduct() {
             }`}
           >
             <option value="">Select category</option>
-            <option value="Fiction">Fiction</option>
+            {/* <option value="Fiction">Fiction</option>
             <option value="Non-Fiction">Non-Fiction</option>
             <option value="Biography">Biography</option>
             <option value="Science">Science</option>
             <option value="History">History</option>
-            <option value="Religion">Religion</option>
+            <option value="Religion">Religion</option> */}
+            {!loading &&
+              categories.map((category) => (
+                <option key={category.index} value={category.category}>
+                  {category.category}
+                </option>
+              ))}
           </select>
           {errors.category && (
             <span className="text-red-500 text-sm">

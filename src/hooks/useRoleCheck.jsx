@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 
 export const useRoleCheck = (email) => {
-  const [role, setRole] = useState("");
+  // const [role, setRole] = useState("");
+  // const [name, setName] = useState("");
+  const [loggedUser, setLoggedUser] = useState({});
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
@@ -15,7 +17,9 @@ export const useRoleCheck = (email) => {
         return response.json();
       })
       .then((data) => {
-        setRole(data.role);
+        // setName(data.name);
+        // setRole(data.role);
+        setLoggedUser(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -24,5 +28,5 @@ export const useRoleCheck = (email) => {
       });
   }, []);
 
-  return [role, loading];
+  return [loggedUser, loading];
 };

@@ -11,6 +11,8 @@ import AllUsers from "../pages/Dashboards/AllUsers/AllUsers";
 import AddCategory from "../pages/Dashboards/AddCategory/AddCategory";
 import AddProduct from "../pages/Dashboards/AddProduct/AddProduct";
 import AllCategories from "../pages/Dashboards/AllCategories/AllCategories";
+import AllProducts from "../pages/Dashboards/AllProducts/AllProducts";
+import ProfileEdit from "../pages/Dashboards/ProfileEdit/ProfileEdit";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +65,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/allCategories",
         element: <AllCategories />,
+      },
+      {
+        path: "/dashboard/allProducts",
+        element: <AllProducts />,
+      },
+      {
+        path: "/dashboard/profileEdit",
+        element: <ProfileEdit />,
       },
     ],
   },
