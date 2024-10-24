@@ -8,6 +8,8 @@ import NotFound from "../pages/NotFound/NotFound";
 import Products from "../pages/Products/Products";
 import Dashboard from "../layouts/Dashboard/Dashboard";
 import AllUsers from "../pages/Dashboards/AllUsers/AllUsers";
+import AddCategory from "../pages/Dashboards/AddCategory/AddCategory";
+import AddProduct from "../pages/Dashboards/AddProduct/AddProduct";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +50,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/allUsers",
         element: <AllUsers />,
+      },
+      {
+        path: "/dashboard/addCategory",
+        element: <AddCategory />,
+      },
+      {
+        path: "/dashboard/addProduct",
+        element: <AddProduct />,
       },
     ],
   },
