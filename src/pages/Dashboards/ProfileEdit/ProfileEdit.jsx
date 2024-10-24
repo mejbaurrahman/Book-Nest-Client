@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../context-api/AuthProvider";
@@ -36,9 +37,9 @@ const ProfileEdit = () => {
             {/* Profile Image Upload */}
             <div className="flex items-center space-x-4">
               <div className="w-24 h-24 bg-gray-200 rounded-full overflow-hidden">
-                {loggedUser.img ? (
+                {profileImage ? (
                   <img
-                    src={loggedUser.img}
+                    src={profileImage}
                     alt="Profile"
                     className="w-full h-full object-cover"
                   />
@@ -66,6 +67,7 @@ const ProfileEdit = () => {
               <input
                 id="name"
                 type="text"
+                defaultValue={loggedUser.name}
                 {...register("name", { required: "Name is required" })}
                 className={`mt-1 block w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 ${
                   errors.name ? "border-red-500" : "border-gray-300"

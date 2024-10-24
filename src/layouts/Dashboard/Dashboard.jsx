@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context-api/AuthProvider";
 import { useRoleCheck } from "../../hooks/useRoleCheck";
 import { Link, Outlet } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
 
 export default function Dashboard() {
   const { user } = useContext(AuthContext);
@@ -32,6 +33,13 @@ export default function Dashboard() {
             ></label>
             <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
               {/* Sidebar content here */}
+              <li className="rounded-md b">
+                {loggedUser?.img ? (
+                  <img src={loggedUser?.img} alt="" className="w-1/3 rounded" />
+                ) : (
+                  <CgProfile className="text-green-400 text-7xl" />
+                )}
+              </li>
               <li>
                 <a>{loggedUser?.name}</a>
               </li>
