@@ -33,6 +33,10 @@ export const router = createBrowserRouter([
         element: <Register />,
       },
       {
+        path: "/products/:category",
+        element: <Products />,
+      },
+      {
         path: "/products",
         element: (
           <PrivateRoute>
