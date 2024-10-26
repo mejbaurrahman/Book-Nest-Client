@@ -13,6 +13,7 @@ import AddProduct from "../pages/Dashboards/AddProduct/AddProduct";
 import AllCategories from "../pages/Dashboards/AllCategories/AllCategories";
 import AllProducts from "../pages/Dashboards/AllProducts/AllProducts";
 import ProfileEdit from "../pages/Dashboards/ProfileEdit/ProfileEdit";
+import ProductDetail from "../pages/Products/ProductDetail/ProductDetail";
 
 export const router = createBrowserRouter([
   {
@@ -37,12 +38,16 @@ export const router = createBrowserRouter([
         element: <Products />,
       },
       {
-        path: "/products",
+        path: "/product/:_id",
         element: (
           <PrivateRoute>
-            <Products />
+            <ProductDetail />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/products",
+        element: <Products />,
       },
     ],
   },

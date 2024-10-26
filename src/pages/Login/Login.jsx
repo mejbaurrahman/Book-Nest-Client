@@ -40,8 +40,31 @@ const Login = () => {
     googleLogin()
       .then((result) => {
         const user = result.user;
-
-        navigate(from, { replace: true });
+        setLoading(true);
+        const userInfo = {
+          name: user.displayName,
+          email: user.email,
+          password: user?.password,
+          phone: user?.phone,
+          role: "user",
+          address: user?.address,
+          img: user?.photoURL,
+        };
+        fetch("http://localhost:5000/users", {
+          method: "POST", //
+          headers: {
+            "Content-Type": "application/json", // Inform the server that JSON is being sent
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            navigate(from, { replace: true });
+            setLoading(false);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
       })
       .catch((error) => {
         setErrorShow(error.message);

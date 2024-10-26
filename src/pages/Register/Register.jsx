@@ -29,7 +29,7 @@ export default function SignUp() {
         const userInfo = {
           name: data.name,
           email: data.email,
-          password: data.password,
+          password: data?.password,
           phone: data.phone,
           role: data.role,
           address: data?.address,

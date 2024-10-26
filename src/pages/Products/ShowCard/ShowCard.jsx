@@ -22,7 +22,7 @@ export default function ShowCard(props) {
         <h6 className="mx-1">{category}</h6>
         <ProductRating rating={rating}></ProductRating>
         <div className="card-actions justify-end">
-          <Link to={`/products/${_id}`}>
+          <Link to={`/product/${_id}`}>
             <button className="btn btn-ghost btn-outline">View Details</button>
           </Link>
         </div>

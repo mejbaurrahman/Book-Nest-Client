@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../context-api/AuthProvider";
 import { useRoleCheck } from "../../../hooks/useRoleCheck";
 import SpecialButton from "../../../components/SpecialButton/SpecialButton";
+import axios from "axios";
 
 const ProfileEdit = () => {
   const { user } = useContext(AuthContext);
@@ -13,12 +14,75 @@ const ProfileEdit = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const [profileImage, setProfileImage] = useState(null);
 
   // Handle form submission
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+
+    if (data.profileImg[0]) {
+      const formData = new FormData();
+      console.log(data.profileImg[0]);
+      formData.append("image", data.profileImg[0]);
+      const imgbbAPIKey = import.meta.env.VITE_IMGBB_API_KEY;
+
+      try {
+        const response = await axios.post(
+          `https://api.imgbb.com/1/upload?key=${imgbbAPIKey}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data", // Required for file uploads
+            },
+          }
+        );
+
+        if (response.data.success) {
+          const profileInfo = {
+            name: data.name,
+            email: loggedUser.email,
+            password: loggedUser?.password,
+            phone: data?.phone,
+            address: data?.address,
+            img: response.data.data.url,
+          };
+          axios
+            .patch(`http://localhost:5000/users/${user?.email}`, profileInfo)
+            .then(function (response) {
+              alert("User Profile Update successfully");
+              reset();
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          // Reset form after successful upload
+        } else {
+          console.error("Upload failed:", response.data);
+        }
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      }
+    } else {
+      const profileInfo = {
+        name: data.name,
+        email: loggedUser.email,
+        password: loggedUser?.password,
+        phone: data?.phone,
+        address: data?.address,
+        img: loggedUser?.img,
+      };
+      axios
+        .patch(`http://localhost:5000/users/${user?.email}`, profileInfo)
+        .then(function (response) {
+          alert("User Profile Update successfully");
+          reset();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   };
 
   // Handle image change
@@ -43,6 +107,12 @@ const ProfileEdit = () => {
                     alt="Profile"
                     className="w-full h-full object-cover"
                   />
+                ) : loggedUser?.img ? (
+                  <img
+                    src={loggedUser.img}
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                  />
                 ) : (
                   <span className="text-gray-400">No Image</span>
                 )}
@@ -50,11 +120,14 @@ const ProfileEdit = () => {
               <input
                 type="file"
                 accept="image/*"
-                {...register("img")}
+                {...register("profileImg")}
                 onChange={handleImageChange}
                 className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
               />
             </div>
+            {errors.img && (
+              <span className="text-red-500 text-sm">{errors.img.message}</span>
+            )}
 
             {/* Name Field */}
             <div>
