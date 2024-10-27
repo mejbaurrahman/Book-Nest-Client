@@ -14,6 +14,7 @@ import AllCategories from "../pages/Dashboards/AllCategories/AllCategories";
 import AllProducts from "../pages/Dashboards/AllProducts/AllProducts";
 import ProfileEdit from "../pages/Dashboards/ProfileEdit/ProfileEdit";
 import ProductDetail from "../pages/Products/ProductDetail/ProductDetail";
+import ShowCarts from "../pages/Dashboards/ShowCarts/ShowCarts";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/profileEdit",
         element: <ProfileEdit />,
+      },
+      {
+        path: "/dashboard/carts",
+        element: <ShowCarts />,
       },
     ],
   },

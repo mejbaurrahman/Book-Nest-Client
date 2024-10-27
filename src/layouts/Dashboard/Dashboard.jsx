@@ -4,6 +4,7 @@ import { AuthContext } from "../../context-api/AuthProvider";
 import { useRoleCheck } from "../../hooks/useRoleCheck";
 import { Link, Outlet } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
+import { FaCartShopping } from "react-icons/fa6";
 
 export default function Dashboard() {
   const { user } = useContext(AuthContext);
@@ -90,6 +91,15 @@ export default function Dashboard() {
                 >
                   <span className="mr-3">✍️</span>
                   Add Product
+                </Link>
+                <Link
+                  to="/dashboard/carts"
+                  className="flex items-center px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white"
+                >
+                  <span className="mx-1 text-orange-300">
+                    <FaCartShopping />
+                  </span>
+                  My Carts
                 </Link>
               </nav>
               <div className="mt-auto">

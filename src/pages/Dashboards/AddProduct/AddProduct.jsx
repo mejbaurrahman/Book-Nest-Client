@@ -55,6 +55,7 @@ export default function AddProduct() {
           publishedYear: data.publishedYear,
           rating: data.rating,
           review: data.review,
+          price: data.price,
           img: response.data.data.url,
         };
         axios
@@ -177,6 +178,22 @@ export default function AddProduct() {
             <span className="text-red-500 text-sm">
               {errors.rating.message}
             </span>
+          )}
+        </div>
+        <div className="mb-4">
+          <input
+            type="number"
+            {...register("price", {
+              required: "Price is required",
+              valueAsNumber: true,
+            })}
+            className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+              errors.rating ? "border-red-500" : "border-gray-300"
+            }`}
+            placeholder="Enter Price"
+          />
+          {errors.price && (
+            <span className="text-red-500 text-sm">{errors.price.message}</span>
           )}
         </div>
 
