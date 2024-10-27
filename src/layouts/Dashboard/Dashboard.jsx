@@ -44,7 +44,7 @@ export default function Dashboard() {
                     <img
                       src={loggedUser?.img}
                       alt=""
-                      className="w-full rounded-full"
+                      className="w-1/3 rounded-full"
                     />
                   ) : (
                     <CgProfile className="text-green-400 text-7xl" />
@@ -66,16 +66,43 @@ export default function Dashboard() {
                   Home
                 </Link>
 
-                {user?.email ? (
+                {user?.email && loggedUser?.role == "admin" ? (
                   <>
                     <Link
-                      to="/dashboard/carts"
+                      to="/dashboard/allUsers"
                       className="flex items-center px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white"
                     >
-                      <span className="mx-1 text-orange-300">
-                        <FaCartShopping />
-                      </span>
-                      My Carts
+                      <span className="mr-3">📚</span>
+                      All Users
+                    </Link>
+
+                    <Link
+                      to="/dashboard/allCategories"
+                      className="flex items-center px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white"
+                    >
+                      <span className="mr-3">✍️</span>
+                      All Categories
+                    </Link>
+                    <Link
+                      to="/dashboard/allProducts"
+                      className="flex items-center px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white"
+                    >
+                      <span className="mr-3">✍️</span>
+                      All Products
+                    </Link>
+                    <Link
+                      to="/dashboard/addCategory"
+                      className="flex items-center px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white"
+                    >
+                      <span className="mr-3">✍️</span>
+                      Add Category
+                    </Link>
+                    <Link
+                      to="/dashboard/addProduct"
+                      className="flex items-center px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white"
+                    >
+                      <span className="mr-3">✍️</span>
+                      Add Product
                     </Link>
                   </>
                 ) : (

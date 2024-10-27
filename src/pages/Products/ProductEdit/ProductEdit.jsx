@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../context-api/AuthProvider";
 import { useRoleCheck } from "../../../hooks/useRoleCheck";
 
-export default function ProductEdit({ id, onClose, refetch }) {
+export default function ProductEdit({ id, onClose }) {
   console.log(id);
   const {
     register,
@@ -88,7 +88,7 @@ export default function ProductEdit({ id, onClose, refetch }) {
             .patch(`http://localhost:5000/products/${id}`, productInfo)
             .then(function (response) {
               alert("Product Updated successfully");
-              refetch();
+
               reset();
             })
             .catch(function (error) {
@@ -116,7 +116,7 @@ export default function ProductEdit({ id, onClose, refetch }) {
         .patch(`http://localhost:5000/products/${id}`, productInfo)
         .then(function (response) {
           alert("User Profile Update successfully");
-          refetch();
+
           reset();
         })
         .catch(function (error) {
