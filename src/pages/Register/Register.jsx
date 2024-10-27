@@ -38,7 +38,7 @@ export default function SignUp() {
         };
         console.log(userInfo);
 
-        fetch("http://localhost:5000/users", {
+        fetch("https://book-nest-server-eight.vercel.app/users", {
           method: "POST", //
           headers: {
             "Content-Type": "application/json", // Inform the server that JSON is being sent

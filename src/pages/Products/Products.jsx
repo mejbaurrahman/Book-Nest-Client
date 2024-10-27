@@ -8,7 +8,7 @@ export default function Products() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/products")
+    fetch("https://book-nest-server-eight.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         // setBooks(data);

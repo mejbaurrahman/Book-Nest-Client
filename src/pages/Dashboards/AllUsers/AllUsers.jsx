@@ -19,7 +19,9 @@ export default function AllUsers() {
   } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch("http://localhost:5000/allUsers").then((res) => res.json()),
+      fetch("https://book-nest-server-eight.vercel.app/allUsers").then((res) =>
+        res.json()
+      ),
   });
   const [modalData, setModalData] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);

@@ -23,7 +23,7 @@ const UserEdit = ({ data, onClose }) => {
   useEffect(() => {
     if (data) {
       axios
-        .get(`http://localhost:5000/users/${data}`)
+        .get(`https://book-nest-server-eight.vercel.app/users/${data}`)
         .then((response) => {
           console.log(response);
           setUserEdit(response.data);
@@ -64,7 +64,7 @@ const UserEdit = ({ data, onClose }) => {
           };
           axios
             .patch(
-              `http://localhost:5000/users/${userEdit?.email}`,
+              `https://book-nest-server-eight.vercel.app/users/${userEdit?.email}`,
               profileInfo
             )
             .then(function (response) {
@@ -91,7 +91,10 @@ const UserEdit = ({ data, onClose }) => {
         img: userEdit?.img,
       };
       axios
-        .patch(`http://localhost:5000/users/${userEdit?.email}`, profileInfo)
+        .patch(
+          `https://book-nest-server-eight.vercel.app/users/${userEdit?.email}`,
+          profileInfo
+        )
         .then(function (response) {
           alert("User Profile Update successfully");
 

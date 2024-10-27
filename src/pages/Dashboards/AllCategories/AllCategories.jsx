@@ -12,7 +12,9 @@ export default function AllCategories() {
   const { isPending, error, data, isLoading, refetch } = useQuery({
     queryKey: ["categories"],
     queryFn: () =>
-      fetch("http://localhost:5000/categories").then((res) => res.json()),
+      fetch("https://book-nest-server-eight.vercel.app/categories").then(
+        (res) => res.json()
+      ),
   });
   const [modalData, setModalData] = useState(null);
   // Loading state
@@ -42,7 +44,7 @@ export default function AllCategories() {
     if (confirmed) {
       try {
         await axios
-          .delete(`http://localhost:5000/categories/${id}`)
+          .delete(`https://book-nest-server-eight.vercel.app/categories/${id}`)
           .then(function (response) {
             if (response) {
               toast.success("category deleted successfully!");

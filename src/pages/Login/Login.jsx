@@ -51,7 +51,7 @@ const Login = () => {
           address: user?.address,
           img: user?.photoURL,
         };
-        fetch("http://localhost:5000/users", {
+        fetch("https://book-nest-server-eight.vercel.app/users", {
           method: "POST", //
           headers: {
             "Content-Type": "application/json", // Inform the server that JSON is being sent

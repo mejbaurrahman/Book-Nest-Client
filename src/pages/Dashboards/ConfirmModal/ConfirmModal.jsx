@@ -20,7 +20,9 @@ function ConfirmModal({ isOpen, onClose, onConfirm, id, refetch }) {
     console.log("start Working");
     if (id) {
       axios
-        .patch(`http://localhost:5000/user/${id}`, { role: "admin" })
+        .patch(`https://book-nest-server-eight.vercel.app/user/${id}`, {
+          role: "admin",
+        })
         .then((response) => {
           alert("User Created Admin successfully");
         })

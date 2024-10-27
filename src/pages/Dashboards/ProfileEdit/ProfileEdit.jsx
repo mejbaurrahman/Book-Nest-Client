@@ -49,7 +49,10 @@ const ProfileEdit = () => {
             img: response.data.data.url,
           };
           axios
-            .patch(`http://localhost:5000/users/${user?.email}`, profileInfo)
+            .patch(
+              `https://book-nest-server-eight.vercel.app/users/${user?.email}`,
+              profileInfo
+            )
             .then(function (response) {
               alert("User Profile Update successfully");
               reset();
@@ -74,7 +77,10 @@ const ProfileEdit = () => {
         img: loggedUser?.img,
       };
       axios
-        .patch(`http://localhost:5000/users/${user?.email}`, profileInfo)
+        .patch(
+          `https://book-nest-server-eight.vercel.app/users/${user?.email}`,
+          profileInfo
+        )
         .then(function (response) {
           alert("User Profile Update successfully");
           reset();

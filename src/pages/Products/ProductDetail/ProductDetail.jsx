@@ -21,7 +21,7 @@ export default function ProductDetail() {
   };
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/products/${_id}`)
+    fetch(`https://book-nest-server-eight.vercel.app/products/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

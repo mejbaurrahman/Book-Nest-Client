@@ -25,7 +25,7 @@ const BuyProduct = ({ data, onClose }) => {
   useEffect(() => {
     if (data) {
       axios
-        .get(`http://localhost:5000/products/${data}`)
+        .get(`https://book-nest-server-eight.vercel.app/products/${data}`)
         .then((response) => {
           console.log(response);
           setBuyBook(response.data);
@@ -49,7 +49,7 @@ const BuyProduct = ({ data, onClose }) => {
       address: data?.address,
     };
     axios
-      .post(`http://localhost:5000/carts`, profileInfo)
+      .post(`https://book-nest-server-eight.vercel.app/carts`, profileInfo)
       .then(function (response) {
         alert("Book Added to Cart successfully");
 

@@ -21,7 +21,7 @@ const CategoryEdit = ({ id, onClose }) => {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:5000/category/${id}`)
+        .get(`https://book-nest-server-eight.vercel.app/category/${id}`)
         .then((response) => {
           console.log(response);
           setCEdit(response.data);
@@ -38,7 +38,10 @@ const CategoryEdit = ({ id, onClose }) => {
       category: data.category || cEdit?.category,
     };
     axios
-      .patch(`http://localhost:5000/categories/${id}`, cInfo)
+      .patch(
+        `https://book-nest-server-eight.vercel.app/categories/${id}`,
+        cInfo
+      )
       .then(function (response) {
         alert("Category Update successfully");
 

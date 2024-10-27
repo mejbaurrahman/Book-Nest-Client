@@ -11,7 +11,7 @@ export default function AddProduct() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/categories")
+      .get("https://book-nest-server-eight.vercel.app/categories")
       .then(function (response) {
         setCategories(response.data);
         setLoading(false);
@@ -59,7 +59,10 @@ export default function AddProduct() {
           img: response.data.data.url,
         };
         axios
-          .post("http://localhost:5000/products", productInfo)
+          .post(
+            "https://book-nest-server-eight.vercel.app/products",
+            productInfo
+          )
           .then(function (response) {
             alert("Product ADDED successfully");
             reset();

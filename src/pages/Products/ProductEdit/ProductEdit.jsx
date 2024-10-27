@@ -26,7 +26,7 @@ export default function ProductEdit({ id, onClose }) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/categories")
+      .get("https://book-nest-server-eight.vercel.app/categories")
       .then(function (response) {
         setCategories(response.data);
         setLoading(false);
@@ -40,7 +40,7 @@ export default function ProductEdit({ id, onClose }) {
     setLoading2(true);
     if (id) {
       axios
-        .get(`http://localhost:5000/products/${id}`)
+        .get(`https://book-nest-server-eight.vercel.app/products/${id}`)
         .then((response) => {
           console.log(response);
           setProductEdit(response.data);
@@ -85,7 +85,10 @@ export default function ProductEdit({ id, onClose }) {
             img: response.data.data.url || productEdit?.img,
           };
           axios
-            .patch(`http://localhost:5000/products/${id}`, productInfo)
+            .patch(
+              `https://book-nest-server-eight.vercel.app/products/${id}`,
+              productInfo
+            )
             .then(function (response) {
               alert("Product Updated successfully");
 
@@ -113,7 +116,10 @@ export default function ProductEdit({ id, onClose }) {
         rating: data?.rating || productEdit?.rating,
       };
       axios
-        .patch(`http://localhost:5000/products/${id}`, productInfo)
+        .patch(
+          `https://book-nest-server-eight.vercel.app/products/${id}`,
+          productInfo
+        )
         .then(function (response) {
           alert("User Profile Update successfully");
 

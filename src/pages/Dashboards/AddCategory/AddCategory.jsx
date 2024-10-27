@@ -15,9 +15,12 @@ export default function AddCategory() {
     console.log(data);
     try {
       // Axios POST request to add category
-      const response = await axios.post("http://localhost:5000/categories", {
-        category: data.category,
-      });
+      const response = await axios.post(
+        "https://book-nest-server-eight.vercel.app/categories",
+        {
+          category: data.category,
+        }
+      );
       console.log("Category added:", response.data);
       alert("Category added successfully!");
       reset(); // Reset the form after successful submission

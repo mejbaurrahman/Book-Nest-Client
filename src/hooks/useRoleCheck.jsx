@@ -9,7 +9,7 @@ export const useRoleCheck = (email) => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/users?email=${email}`)
+    fetch(`https://book-nest-server-eight.vercel.app/users?email=${email}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

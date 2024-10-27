@@ -8,7 +8,7 @@ export default function ShowCarts() {
   const [total, setTotal] = useState(null);
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/carts/${user?.email}`)
+    fetch(`https://book-nest-server-eight.vercel.app/carts/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         // setBooks(data);

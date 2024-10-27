@@ -13,7 +13,9 @@ export default function AllProducts() {
   const { isPending, error, data, isLoading, refetch } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
-      fetch("http://localhost:5000/products").then((res) => res.json()),
+      fetch("https://book-nest-server-eight.vercel.app/products").then((res) =>
+        res.json()
+      ),
   });
 
   // Loading state
@@ -43,7 +45,7 @@ export default function AllProducts() {
     if (confirmed) {
       try {
         await axios
-          .delete(`http://localhost:5000/products/${id}`)
+          .delete(`https://book-nest-server-eight.vercel.app/products/${id}`)
           .then(function (response) {
             if (response) {
               toast.success("Product deleted successfully!");

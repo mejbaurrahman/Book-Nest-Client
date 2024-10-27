@@ -17,7 +17,9 @@ const CategorySection = () => {
   } = useQuery({
     queryKey: ["categories"],
     queryFn: () =>
-      fetch("http://localhost:5000/categories").then((res) => res.json()),
+      fetch("https://book-nest-server-eight.vercel.app/categories").then(
+        (res) => res.json()
+      ),
   });
 
   // Sample categories data
