@@ -79,21 +79,9 @@ export default function NavBar() {
         <div className="flex justify-end">
           {user?.uid ? (
             <div className="flex justify-center items-center gap-2">
-              <img
-                className="lg:w-12 md:w-12 w-full rounded-full"
-                src={user?.photoURL}
-              />
-              <p>{user?.displayName}</p>
-
               <Link to="/dashboard">
                 <button className="btn btn-black btn-outline">Dashboard</button>
               </Link>
-              <button
-                onClick={handleLogOut}
-                className="btn btn-black btn-outline"
-              >
-                Logout
-              </button>
             </div>
           ) : (
             <>
