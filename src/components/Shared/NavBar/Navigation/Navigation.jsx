@@ -33,7 +33,7 @@ export default function NavBar() {
 
       <NavLink to="/products" style={navButtonStyle}>
         <button className="btn btn-outline border-none px-3 py-3 mx-2">
-          Products
+          All Products
         </button>
       </NavLink>
     </>

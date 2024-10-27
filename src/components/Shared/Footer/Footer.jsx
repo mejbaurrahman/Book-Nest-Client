@@ -53,7 +53,7 @@ export default function Footer() {
               />
             </svg>
             <h5 className="text-black text-base font-normal leading-6 ml-5">
-              boighor@gmail.com
+              booknest@gmail.com
             </h5>
           </a>
           <a href="javascript:;" className="flex items-center">

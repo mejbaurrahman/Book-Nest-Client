@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../context-api/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const {
@@ -72,78 +73,88 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center my-16">
-      <div className="lg:w-1/3 md:w-1/3 w-full px-2 mx-auto">
-        <div>
-          <h1>Login</h1>
-        </div>
-        <div>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 font-medium mb-2"
-                htmlFor="name"
-              >
-                Email
-              </label>
-              <input
-                className="input input-bordered w-full"
-                id="email"
-                type="email"
-                placeholder="*@*.com"
-                {...register("email", { required: true })}
-              />
-              {errors.name && (
-                <p className="text-red-500 text-xs italic">Email is required</p>
-              )}
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 font-medium mb-2"
-                htmlFor="email"
-              >
-                Password
-              </label>
-              <input
-                className="input input-bordered w-full"
-                id="password"
-                type="password"
-                placeholder="*******"
-                {...register("password", { required: true })}
-              />
-              {errors.email && (
-                <p className="text-red-500 text-xs italic">
-                  Paasword is required
-                </p>
-              )}
-            </div>
-
-            <button type="submit" className="btn btn-ghost btn-outline w-full">
-              Login
-            </button>
-          </form>
-          <div className="my-2">
-            <p className="">
-              New User?{" "}
-              <Link className="text-primary opacity-70" to="/register">
-                Register
-              </Link>
-            </p>
+    <>
+      <Helmet>
+        <title>Book Nest | Login</title>
+      </Helmet>
+      <div className="flex justify-center items-center my-16">
+        <div className="lg:w-1/3 md:w-1/3 w-full px-2 mx-auto">
+          <div>
+            <h1 className="text-4xl text-center font-medium">Login</h1>
           </div>
-          <div className="divider">OR</div>
-          <div className="flex lg:justify-center md:justify-center lg:flex-row flex-col items-center">
-            <button
-              onClick={handleGoogleLogin}
-              type="submit"
-              className="btn btn-ghost text-xl btn-outline my-2 py-3 px-7 w-1/3"
-            >
-              <FaGoogle />
-            </button>
+          <div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 font-medium mb-2"
+                  htmlFor="name"
+                >
+                  Email
+                </label>
+                <input
+                  className="input input-bordered w-full"
+                  id="email"
+                  type="email"
+                  placeholder="*@*.com"
+                  {...register("email", { required: true })}
+                />
+                {errors.name && (
+                  <p className="text-red-500 text-xs italic">
+                    Email is required
+                  </p>
+                )}
+              </div>
+
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 font-medium mb-2"
+                  htmlFor="email"
+                >
+                  Password
+                </label>
+                <input
+                  className="input input-bordered w-full"
+                  id="password"
+                  type="password"
+                  placeholder="*******"
+                  {...register("password", { required: true })}
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-xs italic">
+                    Paasword is required
+                  </p>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                className="btn btn-ghost btn-outline w-full"
+              >
+                Login
+              </button>
+            </form>
+            <div className="my-2">
+              <p className="">
+                New User?{" "}
+                <Link className="text-primary opacity-70" to="/register">
+                  Register
+                </Link>
+              </p>
+            </div>
+            <div className="divider">OR</div>
+            <div className="flex lg:justify-center md:justify-center lg:flex-row flex-col items-center">
+              <button
+                onClick={handleGoogleLogin}
+                type="submit"
+                className="btn btn-ghost text-xl btn-outline my-2 py-3 px-7 w-1/3"
+              >
+                <FaGoogle />
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

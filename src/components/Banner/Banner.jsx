@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { Link } from "react-router-dom";
 import bannerPhoto from "../../assets/images/banner2.png";
 import bannerPhoto2 from "../../assets/images/p-1 (8).jpg";
 import SpecialButton from "../SpecialButton/SpecialButton";
@@ -13,7 +14,9 @@ export default function Banner() {
             Find Your Next Favorite Book at{" "}
             <span className="text-3xl  font-extralight">Book Nest</span>
           </p>
-          <SpecialButton name="Buy Book"></SpecialButton>
+          <Link to="/products">
+            <SpecialButton name="Buy Book"></SpecialButton>
+          </Link>
         </div>
       </div>
     </div>

@@ -5,18 +5,22 @@ import { useRoleCheck } from "../../hooks/useRoleCheck";
 import { Link, Outlet } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { FaCartShopping } from "react-icons/fa6";
+import { Helmet } from "react-helmet";
+import { IoMdLogOut } from "react-icons/io";
 
 export default function Dashboard() {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [loggedUser, loading] = useRoleCheck(user.email);
   return (
     <>
+      <Helmet>
+        <title>Book Nest | Dashboard</title>
+      </Helmet>
       {!loading && (
         <div className="drawer lg:drawer-open">
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content flex flex-col ">
             {/* Page content here */}
-
             <label
               htmlFor="my-drawer-2"
               className="btn btn-primary drawer-button lg:hidden"
@@ -111,15 +115,10 @@ export default function Dashboard() {
                   Profile Edit
                 </Link>
               </div>
-              <div className="">
-                <Link
-                  to="/logout"
-                  className="flex items-center px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white"
-                >
-                  <span className="mr-3">🚪</span>
-                  Logout
-                </Link>
-              </div>
+
+              <btn onClick={logOut} className="btn btn-outline btn-error">
+                <IoMdLogOut /> Logout
+              </btn>
             </ul>
           </div>
         </div>

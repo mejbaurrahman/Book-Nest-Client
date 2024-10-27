@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import toast from "react-hot-toast";
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 
@@ -21,6 +23,26 @@ export default function AllProducts() {
     return <div>Error fetching Products: {error.message}</div>;
   }
 
+  const handleDelete = async (id) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this product?"
+    );
+    if (confirmed) {
+      try {
+        await axios
+          .delete(`http://localhost:5000/products/${id}`)
+          .then(function (response) {
+            if (response) {
+              toast.success("Product deleted successfully!");
+              refetch();
+            }
+          });
+      } catch (error) {
+        console.error("Error deleting item:", error);
+        toast.error("Failed to delete item. Please try again.");
+      }
+    }
+  };
   // Render categories in a table format
   return (
     <div className="lg:w-3/4 md:w-full mx-auto mt-6">
@@ -45,7 +67,10 @@ export default function AllProducts() {
                 </td>
                 <td className="py-2 px-4 border">{product.book}</td>
                 <td className="py-2 px-4 border">
-                  <button className="text-2xl text-red-600 px-3 py-2">
+                  <button
+                    onClick={() => handleDelete(product._id)}
+                    className="text-2xl text-red-600 px-3 py-2"
+                  >
                     <MdDelete />
                   </button>
                 </td>
