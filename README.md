@@ -2,6 +2,7 @@
 
 **Book Nest** is a full-featured e-commerce web application for book enthusiasts, allowing users to browse products, explore categories, view details, and make purchases. Built using **React**, **Tailwind CSS**, **Firebase Authentication**, **Express.js**, and **MongoDB**, this website provides both user and admin functionalities in an intuitive, visually appealing design.
 
+## admin: admin@admin.com password: 123456
 ## Features
 
 ### Frontend Features
